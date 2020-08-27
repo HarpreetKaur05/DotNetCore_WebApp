@@ -6,9 +6,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using MVCCore.Models;
 using Microsoft.EntityFrameworkCore;
-using StructureMap;
-using MVCCore.StructureMap;
 using System;
+using Lamar;
+using MVCCore.StructureMap;
 
 namespace MVCCore
 {
@@ -22,40 +22,31 @@ namespace MVCCore
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public IServiceProvider ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
-            
+            var container = new Lamar.Container(x =>
+            {
+               // x.AddTransient<IMessagingService, StructureMappingService>();
+                services.AddScoped<IMessagingService, StructureMappingService>();
                 services.AddControllersWithViews();
                 services.AddMvc();
-
                 services.AddDbContext<DoctorContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DevConnection"))
-                );
+                options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
+            });                     
+        }
 
-            // Dependency Injection
-            // instance of doctor context whenever we needed we can use ,
-            //We need construtor parameter in controller class to no need create a instance 
-
-            // Structure Map Demo
-            var Container = new Container();
-            Container.Configure(config =>
+        public void ConfigureContainer(ServiceRegistry services)
+        {
+            services.Scan(s =>
             {
-                // config.AddRegistry(new StructureMappingRegistry());
-                // config.Populate(services);
-
-                config.Scan(s =>
-                {
-                    s.TheCallingAssembly();
-                    s.WithDefaultConventions();
-                    s.LookForRegistries();
-                    s.AssembliesAndExecutablesFromApplicationBaseDirectory();
-                });
-                config.Populate(services);
+                s.TheCallingAssembly();
+                s.WithDefaultConventions();
+                 s.AssembliesAndExecutablesFromApplicationBaseDirectory(assembly => assembly.GetName().Name.StartsWith("MVCCore"));
+                // s.AssembliesAndExecutablesFromApplicationBaseDirectory();
+                 
             });
-            return Container.GetInstance<IServiceProvider>();
-         }
 
-
+        }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

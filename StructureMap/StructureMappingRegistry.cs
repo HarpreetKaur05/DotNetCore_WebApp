@@ -11,7 +11,7 @@ namespace MVCCore.StructureMap
     {
         public StructureMappingRegistry()
         {
-          
+
            
         }
 

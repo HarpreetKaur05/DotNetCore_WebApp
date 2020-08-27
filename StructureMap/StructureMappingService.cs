@@ -11,7 +11,8 @@ namespace MVCCore.StructureMap
     {
         public string GetMessage()
         {
-            return ("Hello from Structure Map!!!");
+            var str = "Implementation of DI with Lamer";
+            return str;
         }
 
     }
