@@ -11,7 +11,6 @@ using MVCCore.StructureMap;
 using MediatR;
 using System.Reflection;
 
-
 namespace MVCCore
 {
     public class Startup
