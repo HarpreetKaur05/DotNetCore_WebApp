@@ -12,19 +12,21 @@ namespace MVCCore.Controllers
     public class HomeController : Controller
     {
        private readonly ILogger<HomeController> _logger;
-
-        
-        public HomeController(ILogger<HomeController> logger)
+       private  IMessagingService _messageService;
+         
+        public HomeController(ILogger<HomeController> logger, IMessagingService messagingService)
         {
-          _logger = logger;
+            _logger = logger;
+            _messageService = messagingService;
         }
 
         public IActionResult Index()
         {
-                 return View();
+            ViewBag.Message = _messageService.GetMessage();
+            return View();
         }
 
-        public IActionResult Privacy()
+          public IActionResult Privacy()
         {
             return View();
         }
