@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using MVCCore.Models;
 using MVCCore.StructureMap;
 
+
 namespace MVCCore.Controllers
 {
     public class HomeController : Controller
