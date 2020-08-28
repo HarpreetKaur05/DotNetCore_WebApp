@@ -11,7 +11,7 @@ namespace MVCCore.Controllers
 {
     public class LoginController : Controller
     {
-        private IMediator _mediator;
+        private IMediator _mediator;   // Depency Injection to inject Imediator in asp.netcore
 
         public LoginController(IMediator mediator)
         {
@@ -21,7 +21,7 @@ namespace MVCCore.Controllers
         // GET: LoginController
         public ActionResult Login(Login login)
         {
-                       
+             
             return View();
         }
 
