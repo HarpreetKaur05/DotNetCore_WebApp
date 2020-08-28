@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Controller;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,8 @@ namespace MVCCore.StructureMap
     {
         public string GetMessage()
         {
-            return "Hello from Structure Map!!!";
+            var str = "Implementation of DI with Lamer";
+            return str;
         }
 
     }
