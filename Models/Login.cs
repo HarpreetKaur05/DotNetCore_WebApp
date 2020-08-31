@@ -1,28 +1,26 @@
-﻿using System;
+﻿using MediatR;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace MVCCore
 {
-    public class Doctor
+    public class Login : IRequest<bool>
     {
         [Key]
-        public int DoctorId { get; set; }
+        [Column] 
+        public Int32 UserId { get; set; }
         [Required]
-        public string DoctorName { get; set; }
+
+        public string UserName { get; set; }
+
         [Required]
-        public string DoctorAddress { get; set; }
-        [Required]
-        public int DoctorAge { get; set; }
-        [Required]
-        public string RMPNumber { get; set; }
-        [Required]
-        public string HighestQualification { get; set; }
-        [Required]
-        public string Speciality { get; set; }
+        public string Password { get; set; }
+      
         public Int32 CreatedBy { get; set; }
         public DateTime CreateDate { get; set; }
 
@@ -32,6 +30,5 @@ namespace MVCCore
         public Int32 ModifiedBy { get; set; }
         [AllowNull]
         public DateTime ModifiedDate { get; set; }
-
     }
 }

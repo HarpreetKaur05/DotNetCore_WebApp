@@ -5,15 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using MVCCore.Models;
+using MVCCore;
 
 namespace MVCCore.Controllers
 {
     public class DoctorsController : Controller
     {
-        private readonly DoctorContext _context;
+        private readonly AppContext _context;
 
-        public DoctorsController(DoctorContext context)
+        public DoctorsController(AppContext context)
         {
             _context = context;
         }
@@ -53,7 +53,7 @@ namespace MVCCore.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DoctorId,DoctorName,DoctorAddress,DoctorAge,RMPNumber,HighestQualification,Speciality")] Doctor doctor)
+        public async Task<IActionResult> Create([Bind("DoctorId,DoctorName,DoctorAddress,DoctorAge,RMPNumber,HighestQualification,Speciality,CreatedBy,CreateDate,IsActive,ModifiedBy,ModifiedDate")] Doctor doctor)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace MVCCore.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("DoctorId,DoctorName,DoctorAddress,DoctorAge,RMPNumber,HighestQualification,Speciality")] Doctor doctor)
+        public async Task<IActionResult> Edit(int id, [Bind("DoctorId,DoctorName,DoctorAddress,DoctorAge,RMPNumber,HighestQualification,Speciality,CreatedBy,CreateDate,IsActive,ModifiedBy,ModifiedDate")] Doctor doctor)
         {
             if (id != doctor.DoctorId)
             {
