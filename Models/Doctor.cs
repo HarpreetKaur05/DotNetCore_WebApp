@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Runtime;
 
 namespace MVCCore
 {
@@ -25,13 +26,11 @@ namespace MVCCore
         public string Speciality { get; set; }
         public Int32 CreatedBy { get; set; }
         public DateTime CreateDate { get; set; }
-
         public bool IsActive { get; set; }
 
-        [AllowNull]
-        public Int32 ModifiedBy { get; set; }
-        [AllowNull]
-        public DateTime ModifiedDate { get; set; }
+        public Int32? ModifiedBy = null;
+
+        public DateTime? ModifiedDate = null;
 
     }
 }

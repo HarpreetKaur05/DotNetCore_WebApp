@@ -49,8 +49,7 @@ namespace MVCCore.Controllers
         }
 
         // POST: Doctors/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("DoctorId,DoctorName,DoctorAddress,DoctorAge,RMPNumber,HighestQualification,Speciality,CreatedBy,CreateDate,IsActive,ModifiedBy,ModifiedDate")] Doctor doctor)
@@ -81,8 +80,7 @@ namespace MVCCore.Controllers
         }
 
         // POST: Doctors/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("DoctorId,DoctorName,DoctorAddress,DoctorAge,RMPNumber,HighestQualification,Speciality,CreatedBy,CreateDate,IsActive,ModifiedBy,ModifiedDate")] Doctor doctor)
