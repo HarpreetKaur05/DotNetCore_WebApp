@@ -14,6 +14,6 @@ namespace MVCCore
         }
         public DbSet<Doctor> Doctor { get; set; }
         public DbSet<Login> Login { get; set; }
-
+        
     }
 }

@@ -1,35 +1,27 @@
-﻿@model MVCCore.Login
-
+﻿@model MVCCore.Models.Login
 @{
-    ViewData["Title"] = "Login";
-
+    ViewBag.Title = "User Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @using (Html.BeginForm())
 {
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="UserName" class="control-label"></label>
-                <input asp-for="UserName" class="form-control" />
-                <span asp-validation-for="UserName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>         
-             
-            <div class="form-group">
-                <input type="submit" value="Login"  asp-action="Login" class="btn btn-primary" />
-            </div>
-        </form>
+    <div>
+    <div class="editor-label">
+        @Html.LabelFor(m => m.UserName)
     </div>
-</div>
-}
-
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    <div class="editor-field">
+        @Html.TextBoxFor(m => m.UserName)
+        @Html.ValidationMessageFor(m => m.UserName)
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(m => m.Password)
+    </div>
+    <div class="editor-field">
+        @Html.PasswordFor(m => m.Password)
+        @Html.ValidationMessageFor(m => m.Password)
+    </div>
+    <p>
+        <input type="submit" value="Log In" />
+    </p>
+    </div>
+} 

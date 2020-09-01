@@ -23,24 +23,28 @@ namespace MVCCore.Controllers
         }
 
         // GET: LoginController
+        public  IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
         public async Task<IActionResult> Login(LoginRequest login)
-        { 
+        {
             try
             {
-                var response =  await _mediator.Send(login);
+                var response = await _mediator.Send(login);
 
-                //if (response == "Yes")
-                //    return RedirectToAction("Index", "Doctors");
-                //else
-                    return View();
+                if (response == "")
+                  return RedirectToAction("Index", "Doctors");
+                 else
+                return View();
             }
-            catch(Exception ex)
-             {
-                
-                return  View("Error");
-             }
-            }
+            catch (Exception ex)
+            {
 
-        
+                return View("Error");
+            }
+        }
     }
 }
