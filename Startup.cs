@@ -9,6 +9,13 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using Lamar;
 using MVCCore.StructureMap;
+<<<<<<< Updated upstream
+=======
+using MediatR;
+using System.Reflection;
+using MVCCore.BL;
+using MVCCore.Mediator.Request;
+>>>>>>> Stashed changes
 
 namespace MVCCore
 {
@@ -41,9 +48,14 @@ namespace MVCCore
             {
                 s.TheCallingAssembly();
                 s.WithDefaultConventions();
+<<<<<<< Updated upstream
                  s.AssembliesAndExecutablesFromApplicationBaseDirectory(assembly => assembly.GetName().Name.StartsWith("MVCCore"));
                 // s.AssembliesAndExecutablesFromApplicationBaseDirectory();
                  
+=======
+                s.AssembliesAndExecutablesFromApplicationBaseDirectory(assembly => assembly.GetName().Name.StartsWith("MVCCore"));
+                s.ConnectImplementationsToTypesClosing(typeof(IRequestHandler<,>));
+>>>>>>> Stashed changes
             });
 
         }
