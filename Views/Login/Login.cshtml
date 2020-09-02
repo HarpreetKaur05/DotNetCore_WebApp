@@ -5,7 +5,7 @@
 }
 @using (Html.BeginForm())
 {
-    <div>
+<div>
     <div class="editor-label">
         @Html.LabelFor(m => m.UserName)
     </div>
@@ -23,5 +23,7 @@
     <p>
         <input type="submit" value="Log In" />
     </p>
-    </div>
+
+    @ViewBag.SuccessMessage 
+</div>
 } 

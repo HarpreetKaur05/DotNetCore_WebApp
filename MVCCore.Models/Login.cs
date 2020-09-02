@@ -8,13 +8,14 @@ namespace MVCCore.Models
 {
     public class Login  
     {
-
-        [Required]
+        [Key]
+        public Int32 UserId { get; set; }
+        // [Required]
         [Display(Name = "User Name")]
         [MaxLength(50)]
         public string UserName { get; set; }
         
-        [Required]
+      //  [Required]
         [Display(Name = "Password")]
         [MaxLength(50)]
         public string Password { get; set; }

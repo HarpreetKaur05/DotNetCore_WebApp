@@ -14,6 +14,7 @@ using MVCCore.BL;
 using MVCCore.Mediator.Request;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using MVCCore.Mediator.Handler.ValidatorHandler;
 
 namespace MVCCore
 {
@@ -34,10 +35,9 @@ namespace MVCCore
                 services.AddScoped<IMessagingService, StructureMappingService>();
                 services.AddControllersWithViews();
                 services.AddMvc()                
-                        .AddFluentValidation(); 
-                         
-                services.AddDbContext<AppContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
+                        .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginValidatorHandler>()); 
+                services.AddDbContext<LoginContext>(options =>
+                                    options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
                 services.AddMediatR(typeof(Startup));
                 services.AddMediatR(Assembly.GetExecutingAssembly());                 
             });                     
@@ -50,9 +50,7 @@ namespace MVCCore
                 s.TheCallingAssembly();
                 s.WithDefaultConventions();
                 s.AssembliesAndExecutablesFromApplicationBaseDirectory(assembly => assembly.GetName().Name.StartsWith("MVCCore"));
-                s.ConnectImplementationsToTypesClosing(typeof(IRequestHandler<,>));
-                
-
+                s.ConnectImplementationsToTypesClosing(typeof(IRequestHandler<,>));    
             });
 
         }

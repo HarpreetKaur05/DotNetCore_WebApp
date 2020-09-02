@@ -13,21 +13,12 @@ namespace MVCCore.Mediator.Handler.ValidatorHandler
         public LoginValidatorHandler()
         {
 
-            SetRules();
-        }
-
-        void SetRules()
-        {
             RuleFor(x => x.UserName)
-               .NotEmpty()
-               .WithMessage("Please enter username");
+                .NotEmpty();
 
             RuleFor(x => x.Password)
-                .NotEmpty()
-                .WithMessage("Please enter password");
-
-
-        }
+                .NotEmpty();                 
+        }         
 
     }
 }

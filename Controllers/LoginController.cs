@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -31,20 +31,29 @@ namespace MVCCore.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginRequest login)
         {
-            try
-            {
-                var response = await _mediator.Send(login);
+            if (this.ModelState.IsValid)
+            {                
+                try
+                {
+                    var response = await _mediator.Send(login);
 
-                if (response == "")
-                  return RedirectToAction("Index", "Doctors");
-                 else
+                    if (response != "")
+                     return  RedirectToAction("Index", "Home");                        
+                    else
+                        return View();
+                }
+                catch (Exception ex)
+                {
+
+                    return View("Error");
+                }
+            }
+            else {
+                ViewBag.SuccessMessage = "Not Authorized!";
                 return View();
             }
-            catch (Exception ex)
-            {
 
-                return View("Error");
-            }
+           
         }
     }
 }
