@@ -10,7 +10,10 @@ using Lamar;
 using MVCCore.StructureMap;
 using MediatR;
 using System.Reflection;
-
+using MVCCore.BL;
+using MVCCore.Mediator.Request;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 
 namespace MVCCore
 {
@@ -30,12 +33,13 @@ namespace MVCCore
             { 
                 services.AddScoped<IMessagingService, StructureMappingService>();
                 services.AddControllersWithViews();
-                services.AddMvc();
+                services.AddMvc()                
+                        .AddFluentValidation(); 
+                         
                 services.AddDbContext<AppContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
-
                 services.AddMediatR(typeof(Startup));
-                services.AddMediatR(Assembly.GetExecutingAssembly());
+                services.AddMediatR(Assembly.GetExecutingAssembly());                 
             });                     
         }
 
@@ -46,6 +50,9 @@ namespace MVCCore
                 s.TheCallingAssembly();
                 s.WithDefaultConventions();
                 s.AssembliesAndExecutablesFromApplicationBaseDirectory(assembly => assembly.GetName().Name.StartsWith("MVCCore"));
+                s.ConnectImplementationsToTypesClosing(typeof(IRequestHandler<,>));
+                
+
             });
 
         }

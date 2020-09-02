@@ -9,6 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="9.2.0" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="9.2.0" />
     <PackageReference Include="Lamar" Version="4.3.1" />
     <PackageReference Include="Lamar.Microsoft.DependencyInjection" Version="4.3.1" />
     <PackageReference Include="MediatR" Version="8.1.0" />
@@ -22,10 +24,17 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
     <PackageReference Include="System.Runtime" Version="4.3.1" />
+    <PackageReference Include="xunit.core" Version="2.4.1" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Views\Patient\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MVCCore.BL\MVCCore.BL.csproj" />
+    <ProjectReference Include="..\MVCCore.Mediator.Handler\MVCCore.Mediator.Handler.csproj" />
+    <ProjectReference Include="..\MVCCore.Models\MVCCore.Models.csproj" />
   </ItemGroup>
 
 </Project>

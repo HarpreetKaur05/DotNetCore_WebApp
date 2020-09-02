@@ -1,5 +1,4 @@
-﻿using System;
-
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -9,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using MVCCore.BL;
+using MVCCore.Mediator.Request;
 
 namespace MVCCore.Controllers
 {
@@ -18,26 +18,33 @@ namespace MVCCore.Controllers
         private ILogin _login;
         public LoginController(IMediator mediator , ILogin login)
         {
-            _mediator =  mediator;
+            _mediator = mediator;
             _login = login;
         }
 
         // GET: LoginController
-        public IActionResult Login(Login login)
+        public  IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginRequest login)
         {
             try
             {
-                var response = _login.ValidateUser(login.UserName, login.Password);
-                if (response == true)
-                    return RedirectToAction("Index", "Doctors");
-                else
-                    return View();
-            }
-            catch(Exception ex){
-                return  View("Error");
-             }
-            }
+                var response = await _mediator.Send(login);
 
-        
+                if (response == "")
+                  return RedirectToAction("Index", "Doctors");
+                 else
+                return View();
+            }
+            catch (Exception ex)
+            {
+
+                return View("Error");
+            }
+        }
     }
 }
