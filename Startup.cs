@@ -39,7 +39,8 @@ namespace MVCCore
                 services.AddDbContext<LoginContext>(options =>
                                     options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
                 services.AddMediatR(typeof(Startup));
-                services.AddMediatR(Assembly.GetExecutingAssembly());                 
+                services.AddMediatR(Assembly.GetExecutingAssembly());
+                
             });                     
         }
 

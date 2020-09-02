@@ -11,7 +11,7 @@ namespace MVCCore.Controllers
 {
     public class HomeController : Controller
     {
-       private readonly ILogger<HomeController> _logger;
+       private readonly  ILogger<HomeController> _logger;
        private  IMessagingService _messageService;
          
         public HomeController(ILogger<HomeController> logger, IMessagingService messagingService)
