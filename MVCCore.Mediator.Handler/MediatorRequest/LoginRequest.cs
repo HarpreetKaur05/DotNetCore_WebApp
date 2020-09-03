@@ -5,7 +5,7 @@ using MediatR;
 
 namespace MVCCore.Mediator.Request
 {
-    public class LoginRequest : Login, IRequest<string>
+    public class LoginRequest : Login, IRequest<int>
     {
 
 

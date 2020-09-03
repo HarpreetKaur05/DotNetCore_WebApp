@@ -8,8 +8,7 @@ using System.Security.Cryptography.X509Certificates;
 namespace MVCCore.Mediator.Handler.ValidatorHandler
 {
     public class LoginValidatorHandler : AbstractValidator<LoginRequest>
-    {
-         
+    { 
         public LoginValidatorHandler()
         {
 

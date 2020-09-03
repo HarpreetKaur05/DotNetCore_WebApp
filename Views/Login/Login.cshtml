@@ -20,7 +20,7 @@
                     @Html.LabelFor(m => m.UserName)
                 </div>
                 <div class="editor-field custominputfield">
-                    @Html.TextBoxFor(m => m.UserName)
+                    @Html.TextBoxFor(m => m.UserName, new { placeholder = "Enter Username" })
                     @Html.ValidationMessageFor(m => m.UserName)
                 </div>
 
@@ -28,7 +28,7 @@
                     @Html.LabelFor(m => m.Password)
                 </div>
                 <div class="editor-field custominputfield"  >
-                    @Html.PasswordFor(m => m.Password)
+                    @Html.PasswordFor(m => m.Password, new { placeholder = "Enter Password"})                     
                     @Html.ValidationMessageFor(m => m.Password)
                 </div>
                 
@@ -37,7 +37,10 @@
                     <input type="submit" value="Register" formaction=@Url.Action("Register") formmethod="post" class="custombutton" />
                      
                 </div>
-                @ViewBag.SuccessMessage
+                <div>
+                    
+                    @ViewBag.SuccessMessage
+                </div>
             </div>
         </div>
 

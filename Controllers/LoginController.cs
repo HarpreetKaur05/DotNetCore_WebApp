@@ -34,7 +34,7 @@ namespace MVCCore.Controllers
                 try
                 {
                     var response = await _mediator.Send(login);
-                    if (response != "0")
+                    if (response != 0)
                         return RedirectToAction("Index", "Home");
                     else
                         ViewBag.SuccessMessage = "Wrong Credentials, Please check username or password!";
@@ -42,13 +42,12 @@ namespace MVCCore.Controllers
                 }
                 catch(Exception ex)
                 {
-                    _logger.Error("error in login controller");
+                    _logger.Error("error in login controller" + ex.Message);
                     return View("Error");
                 }
             }
             else
-            {
-              //  ViewBag.SuccessMessage = "Not Authorized!";
+            {              
                 return View();
             }
         }

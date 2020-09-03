@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace MVCCore.BL
 {
-    public class Login : ILogin, IRequest<string>
+    public class Login : ILogin, IRequest<int>
     {
         private readonly LoginContext _dbContext;
 
@@ -17,11 +17,10 @@ namespace MVCCore.BL
             _dbContext = context;
         }
 
-        public string ValidateUser(string username, string password)
+        public async Task<int> ValidateUser(string username, string password)
         {
-            var response = _dbContext.Login.Where(x => x.UserName == username && x.Password == password).Select(x => x.UserId).FirstOrDefault();
-            return response.ToString();
-
+            var response = await _dbContext.Login.Where(x => x.UserName == username && x.Password == password).Select(x => x.UserId).FirstOrDefaultAsync();
+            return response;
         }
     }     
 
