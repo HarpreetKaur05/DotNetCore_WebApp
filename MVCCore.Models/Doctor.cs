@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Runtime;
 
-namespace MVCCore
+namespace MVCCore.Models
 {
     public class Doctor
     {

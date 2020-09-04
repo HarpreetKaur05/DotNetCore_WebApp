@@ -15,6 +15,8 @@ using MVCCore.Mediator.Request;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using MVCCore.Mediator.Handler.ValidatorHandler;
+using MVCCore.Models;
+using AppContext = MVCCore.Models.AppContext;
 
 namespace MVCCore
 {
@@ -34,10 +36,13 @@ namespace MVCCore
             { 
                 services.AddScoped<IMessagingService, StructureMappingService>();
                 services.AddControllersWithViews();
-                services.AddMvc()                
-                        .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginValidatorHandler>()); 
-                services.AddDbContext<LoginContext>(options =>
+                services.AddMvc()
+                        .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginValidatorHandler>())
+                        .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<RegisterValidationHandler>());
+                        
+                services.AddDbContext<AppContext>(options =>
                                     options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
+                
                 services.AddMediatR(typeof(Startup));
                 services.AddMediatR(Assembly.GetExecutingAssembly());
                 

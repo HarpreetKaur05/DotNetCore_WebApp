@@ -13,11 +13,13 @@ namespace MVCCore.Controllers
         private IMediator _mediator;   // Depency Injection to inject Imediator in asp.netcore
         private ILogin _login;
         private readonly ILogger _logger;
-        public LoginController(IMediator mediator , ILogin login, ILogger logger)
+        private IRegister _register;
+        public LoginController(IMediator mediator , ILogin login, ILogger logger, IRegister register)
         {
             _mediator = mediator;
             _login = login;
             _logger = logger;
+            _register = register;
         }
 
         // GET: LoginController
@@ -52,11 +54,32 @@ namespace MVCCore.Controllers
             }
         }
 
-        [HttpPost]
+        /******************************************************************
+         *  Register Module
+         * ******************************************************************/
         public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterRequest register)
+        {
+            if(this.ModelState.IsValid)
             {
-                return View();
+               await _mediator.Send(register);
+                 try
+                {
+                  return RedirectToAction ("Login", "Login");
+                }
+                catch (Exception ex)
+                {
+                    _logger.Error("error in Register controller" + ex.Message);
+                    return View("Error");
+                }
             }
-        
+            return View();
+        }
+
     }
 }

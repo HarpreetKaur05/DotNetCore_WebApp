@@ -21,8 +21,7 @@ namespace MVCCore
 
             try
             {
-                Log.Information("Starting web host");
-            
+                Log.Information("Starting web host");            
                 CreateHostBuilder(args).Build().Run();                
             }
             catch (Exception ex)

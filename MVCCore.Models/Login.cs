@@ -19,9 +19,6 @@ namespace MVCCore.Models
         [Display(Name = "Password")]
         [MaxLength(50)]
         public string Password { get; set; }
-
          
-    }
-
-    
+    }    
 }
