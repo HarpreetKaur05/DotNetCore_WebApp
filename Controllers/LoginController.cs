@@ -1,14 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
+﻿using System; 
 using System.Threading.Tasks;
-using MediatR;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
+using MediatR; 
+using Microsoft.AspNetCore.Mvc; 
 using MVCCore.BL;
 using MVCCore.Mediator.Request;
+using Serilog;
 
 namespace MVCCore.Controllers
 {
@@ -16,10 +12,12 @@ namespace MVCCore.Controllers
     {
         private IMediator _mediator;   // Depency Injection to inject Imediator in asp.netcore
         private ILogin _login;
-        public LoginController(IMediator mediator , ILogin login)
+        private readonly ILogger _logger;
+        public LoginController(IMediator mediator , ILogin login, ILogger logger)
         {
             _mediator = mediator;
             _login = login;
+            _logger = logger;
         }
 
         // GET: LoginController
@@ -31,20 +29,34 @@ namespace MVCCore.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginRequest login)
         {
-            try
+            if (this.ModelState.IsValid)
             {
-                var response = await _mediator.Send(login);
-
-                if (response == "")
-                  return RedirectToAction("Index", "Doctors");
-                 else
+                try
+                {
+                    var response = await _mediator.Send(login);
+                    if (response != 0)
+                        return RedirectToAction("Index", "Home");
+                    else
+                        ViewBag.SuccessMessage = "Wrong Credentials, Please check username or password!";
+                        return View();
+                }
+                catch(Exception ex)
+                {
+                    _logger.Error("error in login controller" + ex.Message);
+                    return View("Error");
+                }
+            }
+            else
+            {              
                 return View();
             }
-            catch (Exception ex)
-            {
-
-                return View("Error");
-            }
         }
+
+        [HttpPost]
+        public IActionResult Register()
+            {
+                return View();
+            }
+        
     }
 }

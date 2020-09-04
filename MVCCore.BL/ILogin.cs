@@ -7,7 +7,7 @@ namespace MVCCore.BL
 {
    public interface ILogin 
     {
-        public string ValidateUser( string username , string password);
+        public Task<int> ValidateUser( string username , string password);
 
     }
 }
