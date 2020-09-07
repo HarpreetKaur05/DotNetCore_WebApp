@@ -12,19 +12,19 @@ namespace MVCCore.Models
         public Int32 UserId { get; set; }
 
         [Display(Name = "User Name")]
-        [MaxLength(50)]
+         
         public string UserName { get; set; }
         
         [Display(Name = "Email")]
         public string Email { get; set; }
         
         [Display(Name = "Set Password")]
-        [MaxLength(50)]
+        
         public string Password { get; set; }
 
         [NotMapped]
         [Display(Name = "Confirm Password")]
-        [MaxLength(50)]
+        
         [Compare("Password", ErrorMessage = "Passwords do not match.")]
         public string ConfirmPassword { get; set; }
 
