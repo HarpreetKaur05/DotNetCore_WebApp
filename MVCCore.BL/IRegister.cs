@@ -10,7 +10,7 @@ namespace MVCCore.BL
     {
         public  Task<int> SaveNewUser(RegisterModel register);
 
-      
-        
+        public Task<bool> CreateUserWithIdentity(RegisterModel register);
+
     }
 }

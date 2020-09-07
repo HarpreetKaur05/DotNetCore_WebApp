@@ -51,7 +51,9 @@ namespace MVCCore
 
                 services.AddIdentity<IdentityUser, IdentityRole>()
                         .AddEntityFrameworkStores<AppContext>();
-            
+                
+                services.Configure<PasswordHasherOptions>(options => options.CompatibilityMode = PasswordHasherCompatibilityMode.IdentityV3);
+
             });                     
         }
 
