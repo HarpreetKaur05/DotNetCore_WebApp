@@ -4,11 +4,19 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore.SqlServer;
-using MVCCore.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using Lamar;
 using MVCCore.StructureMap;
+using MediatR;
+using System.Reflection;
+using MVCCore.BL;
+using MVCCore.Mediator.Request;
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using MVCCore.Mediator.Handler.ValidatorHandler;
+using MVCCore.Models;
+using AppContext = MVCCore.Models.AppContext;
 
 namespace MVCCore
 {
@@ -25,13 +33,19 @@ namespace MVCCore
         public void ConfigureServices(IServiceCollection services)
         {
             var container = new Lamar.Container(x =>
-            {
-               // x.AddTransient<IMessagingService, StructureMappingService>();
+            { 
                 services.AddScoped<IMessagingService, StructureMappingService>();
                 services.AddControllersWithViews();
-                services.AddMvc();
-                services.AddDbContext<DoctorContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
+                services.AddMvc()
+                        .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginValidatorHandler>())
+                        .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<RegisterValidationHandler>());
+                        
+                services.AddDbContext<AppContext>(options =>
+                                    options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
+                
+                services.AddMediatR(typeof(Startup));
+                services.AddMediatR(Assembly.GetExecutingAssembly());
+                
             });                     
         }
 
@@ -41,9 +55,8 @@ namespace MVCCore
             {
                 s.TheCallingAssembly();
                 s.WithDefaultConventions();
-                 s.AssembliesAndExecutablesFromApplicationBaseDirectory(assembly => assembly.GetName().Name.StartsWith("MVCCore"));
-                // s.AssembliesAndExecutablesFromApplicationBaseDirectory();
-                 
+                s.AssembliesAndExecutablesFromApplicationBaseDirectory(assembly => assembly.GetName().Name.StartsWith("MVCCore"));
+                s.ConnectImplementationsToTypesClosing(typeof(IRequestHandler<,>));    
             });
 
         }
@@ -68,7 +81,7 @@ namespace MVCCore
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Login}/{action=Login}/{id?}");
             });
         }
     }
