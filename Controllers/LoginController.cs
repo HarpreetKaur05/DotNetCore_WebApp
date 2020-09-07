@@ -75,6 +75,7 @@ namespace MVCCore.Controllers
                         return RedirectToAction("Login", "Login");
                     }
                     else {
+                        ViewBag.SuccessMessage = "User Already exists, please login";                         
                     }
                 }
                 catch (Exception ex)
