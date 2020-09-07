@@ -67,10 +67,15 @@ namespace MVCCore.Controllers
         {
             if(this.ModelState.IsValid)
             {
-               await _mediator.Send(register);
-                 try
+                try
                 {
-                  return RedirectToAction ("Login", "Login");
+                      var response =  await _mediator.Send(register);
+                    if (response != 0)
+                    {
+                        return RedirectToAction("Login", "Login");
+                    }
+                    else {
+                    }
                 }
                 catch (Exception ex)
                 {

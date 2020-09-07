@@ -21,15 +21,23 @@ namespace MVCCore.BL
 
         public async Task<int> SaveNewUser(RegisterModel register)
         {
-                     _dbContext.Add(register);
-                     await _dbContext.SaveChangesAsync();
-            return intResponse =1 ;
+            var boolResponse = CheckUserExistsOrNot(register.Email);
+            if (boolResponse.Result == true)
+            { return intResponse = 0; }
+           else { 
+            _dbContext.Add(register);
+            intResponse =  await _dbContext.SaveChangesAsync();
+            return intResponse  ;
+                }
         }
 
-        public async Task<int> CheckUserExistsOrNot(string email)
+        public async Task<bool> CheckUserExistsOrNot(string email)
         {
-              intResponse = await _dbContext.Register.Where(x => x.Email == email).Select(x => x.UserId).FirstOrDefaultAsync() ;
-            return intResponse;
+             var response =  await _dbContext.Register.Where(x => x.Email == email).Select(x => x.UserId).FirstOrDefaultAsync() ;
+             if (response != 0)
+                return true;
+            else
+                return false;              
         }
 
     }

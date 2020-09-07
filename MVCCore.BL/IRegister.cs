@@ -8,7 +8,9 @@ namespace MVCCore.BL
 {
     public interface IRegister 
     {
-     public  Task<int> SaveNewUser(RegisterModel register);
+        public  Task<int> SaveNewUser(RegisterModel register);
 
+      
+        
     }
 }
