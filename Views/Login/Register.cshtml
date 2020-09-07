@@ -1,8 +1,66 @@
-﻿ 
- 
+﻿@model MVCCore.Models.RegisterModel
 @{
+     
     ViewData["Title"] = "Register";
+     
 }
+
+@using (Html.BeginForm())
+{
+
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
+
+                <span class="login100-form-title p-b-33">
+                    Register User
+                </span>
+
+                <div class="editor-label">
+                    @Html.LabelFor(m => m.UserName)
+                </div>
+                <div class="editor-field custominputfield">
+                    @Html.TextBoxFor(m => m.UserName, new { placeholder = "Enter username" })
+                    @Html.ValidationMessageFor(m => m.UserName)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(m => m.Email)
+                </div>
+                <div class="editor-field custominputfield">
+                    @Html.TextBoxFor(m => m.Email, new { placeholder = "Enter email to register" })
+                    @Html.ValidationMessageFor(m => m.Email)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(m => m.Password)
+                </div>
+                <div class="editor-field custominputfield">
+                    @Html.PasswordFor(m => m.Password, new { placeholder = "Enter password" })
+                    @Html.ValidationMessageFor(m => m.Password)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(m => m.ConfirmPassword)
+                </div>
+                <div class="editor-field custominputfield">
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "reenter password" })
+                    @Html.ValidationMessageFor(m => m.ConfirmPassword)
+                </div>
+
+
+                <div class="divbutton">
+                    <input type="submit" value="Add" class="custombutton" />
+                    <input type="submit" value="Back to Login" formaction=@Url.Action("Login") formmethod="post"  class="custombutton" />
+                </div>
+
+                @ViewBag.SuccessMessage
+            </div>
+        </div>
+
+    </div>
+}
+
+
 
 <h1>Register</h1>
 

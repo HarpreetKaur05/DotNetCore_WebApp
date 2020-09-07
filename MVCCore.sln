@@ -5,13 +5,13 @@ VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVCCore", "MVCCore.csproj", "{CB083176-CF29-40FB-9DD5-422366737D5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCCore.Mediator.Handler", "..\MVCCore.Mediator.Handler\MVCCore.Mediator.Handler.csproj", "{CA7CF639-DD7A-4154-95C0-9E38A5A2F49B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVCCore.Mediator.Handler", "..\MVCCore.Mediator.Handler\MVCCore.Mediator.Handler.csproj", "{CA7CF639-DD7A-4154-95C0-9E38A5A2F49B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCCore.Models", "..\MVCCore.Models\MVCCore.Models.csproj", "{934A0BE7-D984-4D55-8F2D-B3D3B1F11C50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVCCore.Models", "..\MVCCore.Models\MVCCore.Models.csproj", "{934A0BE7-D984-4D55-8F2D-B3D3B1F11C50}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCCore.BL", "..\MVCCore.BL\MVCCore.BL.csproj", "{1D494798-E68F-449E-B857-971BF1957B7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVCCore.BL", "..\MVCCore.BL\MVCCore.BL.csproj", "{1D494798-E68F-449E-B857-971BF1957B7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitTestProject", "..\XUnitTestProject\XUnitTestProject.csproj", "{03A9C278-3604-4B38-8F1D-C1C8CDDFA21E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnitTestProject", "..\XUnitTestProject\XUnitTestProject.csproj", "{03A9C278-3604-4B38-8F1D-C1C8CDDFA21E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

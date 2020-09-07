@@ -5,7 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using MVCCore.Models;
 using MVCCore.BL;
-using MVCCore.Mediator.Request; 
+using MVCCore.Mediator.Request;
 
 namespace MVCCore.Mediator.Handler
 {

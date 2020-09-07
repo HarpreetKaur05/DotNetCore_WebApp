@@ -5,14 +5,16 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using MVCCore.Models;
+using AppContext = MVCCore.Models.AppContext;
 
 namespace MVCCore.BL
 {
     public class Login : ILogin, IRequest<int>
     {
-        private readonly LoginContext _dbContext;
+        private readonly AppContext _dbContext;
 
-        public Login(LoginContext context)
+        public Login(AppContext context)
         {
             _dbContext = context;
         }
