@@ -11,10 +11,10 @@ namespace MVCCore.Controllers
 {
     public class LoginController : Controller
     {
-        private IMediator _mediator;   // Dependency Injection to inject Imediator in asp.netcore
-        private ILogin _login;
+        private readonly IMediator _mediator;   // Dependency Injection to inject Imediator in asp.netcore
+        private readonly ILogin _login;
         private readonly ILogger _logger;
-        private IRegister _register;
+        private readonly IRegister _register;
 
         public LoginController(IMediator mediator , ILogin login, ILogger logger, IRegister register) 
         {
@@ -39,7 +39,7 @@ namespace MVCCore.Controllers
                 {                     
                     var response = await _mediator.Send(login);
                     if (response  == true)
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("ListOfCustomer", "Home");
                     else
                         ViewBag.SuccessMessage = "Wrong credentials or user does not exist";
                     return View();
@@ -70,6 +70,38 @@ namespace MVCCore.Controllers
         public async Task<IActionResult> Register(RegisterRequest register)
         {
             if(this.ModelState.IsValid)
+            {
+                try
+                {
+                    var response = await _mediator.Send(register);
+                    if (response == true)
+                    {
+                        return RedirectToAction("Login", "Login");
+                    }
+                    else
+                    {
+                        ViewBag.SuccessMessage = "User Already exists, please login";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _logger.Error("error in Register controller" + ex.Message);
+                    return View("Error");
+                }
+            }
+            return View();
+        }
+
+        /********************************************************************************************/
+        public IActionResult ForgotPassword ()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ForgotPassword(RegisterRequest register)
+        {
+            if (this.ModelState.IsValid)
             {
                 try
                 {

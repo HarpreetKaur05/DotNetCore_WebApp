@@ -2,8 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MVCCore.Models;
-using System;
-using System.Collections.Generic;
+using System; 
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -48,9 +47,9 @@ namespace MVCCore.BL
                 return false;
         }
 
-        /************************************************************/
+        /*****************************************************************************************/
         public async Task<bool> CreateUserWithIdentity(RegisterModel register)
-        {
+        {            
             var user = new IdentityUser
             {
                 UserName = register.UserName,
