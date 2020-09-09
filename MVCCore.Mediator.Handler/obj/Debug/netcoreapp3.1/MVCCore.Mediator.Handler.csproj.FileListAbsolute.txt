@@ -1,0 +1,14 @@
+D:\Projects\MVCCore.Mediator.Handler\bin\Debug\netcoreapp3.1\MVCCore.Mediator.Handler.deps.json
+D:\Projects\MVCCore.Mediator.Handler\bin\Debug\netcoreapp3.1\MVCCore.Mediator.Handler.dll
+D:\Projects\MVCCore.Mediator.Handler\bin\Debug\netcoreapp3.1\MVCCore.Mediator.Handler.pdb
+D:\Projects\MVCCore.Mediator.Handler\bin\Debug\netcoreapp3.1\MVCCore.BL.dll
+D:\Projects\MVCCore.Mediator.Handler\bin\Debug\netcoreapp3.1\MVCCore.Models.dll
+D:\Projects\MVCCore.Mediator.Handler\bin\Debug\netcoreapp3.1\MVCCore.BL.pdb
+D:\Projects\MVCCore.Mediator.Handler\bin\Debug\netcoreapp3.1\MVCCore.Models.pdb
+D:\Projects\MVCCore.Mediator.Handler\obj\Debug\netcoreapp3.1\MVCCore.Mediator.Handler.csprojAssemblyReference.cache
+D:\Projects\MVCCore.Mediator.Handler\obj\Debug\netcoreapp3.1\MVCCore.Mediator.Handler.AssemblyInfoInputs.cache
+D:\Projects\MVCCore.Mediator.Handler\obj\Debug\netcoreapp3.1\MVCCore.Mediator.Handler.AssemblyInfo.cs
+D:\Projects\MVCCore.Mediator.Handler\obj\Debug\netcoreapp3.1\MVCCore.Mediator.Handler.csproj.CoreCompileInputs.cache
+D:\Projects\MVCCore.Mediator.Handler\obj\Debug\netcoreapp3.1\MVCCore.Mediator.Handler.csproj.CopyComplete
+D:\Projects\MVCCore.Mediator.Handler\obj\Debug\netcoreapp3.1\MVCCore.Mediator.Handler.dll
+D:\Projects\MVCCore.Mediator.Handler\obj\Debug\netcoreapp3.1\MVCCore.Mediator.Handler.pdb

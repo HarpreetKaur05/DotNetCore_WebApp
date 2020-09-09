@@ -1,0 +1,12 @@
+D:\Projects\MVCCore.Mediator.Request\bin\Debug\netcoreapp3.1\MVCCore.Models.dll
+D:\Projects\MVCCore.Mediator.Request\obj\Debug\netcoreapp3.1\MVCCore.Mediator.Request.AssemblyInfoInputs.cache
+D:\Projects\MVCCore.Mediator.Request\obj\Debug\netcoreapp3.1\MVCCore.Mediator.Request.AssemblyInfo.cs
+D:\Projects\MVCCore.Mediator.Request\obj\Debug\netcoreapp3.1\MVCCore.Mediator.Request.csprojAssemblyReference.cache
+D:\Projects\MVCCore.Mediator.Request\obj\Debug\netcoreapp3.1\MVCCore.Mediator.Request.csproj.CoreCompileInputs.cache
+D:\Projects\MVCCore.Mediator.Request\bin\Debug\netcoreapp3.1\MVCCore.Mediator.Request.deps.json
+D:\Projects\MVCCore.Mediator.Request\bin\Debug\netcoreapp3.1\MVCCore.Mediator.Request.dll
+D:\Projects\MVCCore.Mediator.Request\bin\Debug\netcoreapp3.1\MVCCore.Mediator.Request.pdb
+D:\Projects\MVCCore.Mediator.Request\bin\Debug\netcoreapp3.1\MVCCore.Models.pdb
+D:\Projects\MVCCore.Mediator.Request\obj\Debug\netcoreapp3.1\MVCCore.Mediator.Request.csproj.CopyComplete
+D:\Projects\MVCCore.Mediator.Request\obj\Debug\netcoreapp3.1\MVCCore.Mediator.Request.dll
+D:\Projects\MVCCore.Mediator.Request\obj\Debug\netcoreapp3.1\MVCCore.Mediator.Request.pdb
