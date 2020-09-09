@@ -1,9 +1,0 @@
-D:\Projects\MVCCore.Models\bin\Debug\netcoreapp3.1\MVCCore.Models.deps.json
-D:\Projects\MVCCore.Models\bin\Debug\netcoreapp3.1\MVCCore.Models.dll
-D:\Projects\MVCCore.Models\bin\Debug\netcoreapp3.1\MVCCore.Models.pdb
-D:\Projects\MVCCore.Models\obj\Debug\netcoreapp3.1\MVCCore.Models.AssemblyInfoInputs.cache
-D:\Projects\MVCCore.Models\obj\Debug\netcoreapp3.1\MVCCore.Models.AssemblyInfo.cs
-D:\Projects\MVCCore.Models\obj\Debug\netcoreapp3.1\MVCCore.Models.csproj.CoreCompileInputs.cache
-D:\Projects\MVCCore.Models\obj\Debug\netcoreapp3.1\MVCCore.Models.dll
-D:\Projects\MVCCore.Models\obj\Debug\netcoreapp3.1\MVCCore.Models.pdb
-D:\Projects\MVCCore.Models\obj\Debug\netcoreapp3.1\MVCCore.Models.csprojAssemblyReference.cache
