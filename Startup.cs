@@ -17,6 +17,9 @@ using FluentValidation.AspNetCore;
 using MVCCore.Mediator.Handler.ValidatorHandler;
 using MVCCore.Models;
 using AppContext = MVCCore.Models.AppContext;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace MVCCore
 {
@@ -39,13 +42,18 @@ namespace MVCCore
                 services.AddMvc()
                         .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginValidatorHandler>())
                         .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<RegisterValidationHandler>());
-                        
+
                 services.AddDbContext<AppContext>(options =>
-                                    options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
-                
+                                options.UseSqlServer(Configuration.GetConnectionString("DevConnection"),b => b.MigrationsAssembly("MVCCore")));                                
+                                  
                 services.AddMediatR(typeof(Startup));
                 services.AddMediatR(Assembly.GetExecutingAssembly());
+
+                services.AddIdentity<IdentityUser, IdentityRole>()
+                        .AddEntityFrameworkStores<AppContext>();
                 
+                services.Configure<PasswordHasherOptions>(options => options.CompatibilityMode = PasswordHasherCompatibilityMode.IdentityV3);
+
             });                     
         }
 
@@ -76,6 +84,7 @@ namespace MVCCore
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseAuthentication();  
 
             app.UseEndpoints(endpoints =>
             {

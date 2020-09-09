@@ -9,23 +9,27 @@ using MVCCore.Mediator.Request;
 
 namespace MVCCore.Mediator.Handler
 {
-    public class RegisterHandler : IRequestHandler<RegisterRequest, int>
+    public class RegisterHandler : IRequestHandler<RegisterRequest, bool>
     {
         private readonly IRegister _register;
         public RegisterHandler(IRegister register)
         {
             _register = register;
         }
-      
-       public async Task<int> Handle(RegisterRequest request, CancellationToken cancellationToken)
-        {
-            var response = await _register.SaveNewUser(request);
-            return response;
 
+        public async Task<bool> Handle(RegisterRequest request, CancellationToken cancellationToken)
+        {
+            var response = await _register.CreateUserWithIdentity(request);
+            return response;
         }
 
-       
+        //public async Task<int> Handle(RegisterRequest request, CancellationToken cancellationToken)
+        // {
+        //     var response = await _register.SaveNewUser(request);
+        //     return response;
 
-       
+        // }
+
+
     }
 }

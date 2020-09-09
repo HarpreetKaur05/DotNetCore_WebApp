@@ -17,24 +17,24 @@
                 </span>
 
                 <div class="editor-label">
-                    @Html.LabelFor(m => m.UserName)
+                    @Html.LabelFor(m => m.Email)
                 </div>
-                <div class="editor-field custominputfield">
-                    @Html.TextBoxFor(m => m.UserName, new { placeholder = "Enter Username" })
-                    @Html.ValidationMessageFor(m => m.UserName)
+                <div class="editor-field custominputfield" style="width: 430px !important;">
+                    @Html.TextBoxFor(m => m.Email, new { placeholder = "enter email" })
+                    @Html.ValidationMessageFor(m => m.Email)
                 </div>
 
                 <div class="editor-label">
                     @Html.LabelFor(m => m.Password)
                 </div>
-                <div class="editor-field custominputfield"  >
-                    @Html.PasswordFor(m => m.Password, new { placeholder = "Enter Password"})                     
+                <div class="editor-field custominputfield"  style="width: 430px !important;" >
+                    @Html.PasswordFor(m => m.Password, new { placeholder = "enter password"})                     
                     @Html.ValidationMessageFor(m => m.Password)
                 </div>
                 
                 <div class="divbutton">                    
                     <input type="submit" value="Log In" class="custombutton"  />     
-                    <input type="submit" value="Register" formaction=@Url.Action("Register") formmethod="post" class="custombutton" />
+                    <input type="submit" value="New User" formaction=@Url.Action("Register") formmethod="post" class="custombutton" />
                      
                 </div>
                 <div>

@@ -9,7 +9,7 @@ using MVCCore.Mediator.Request;
 
 namespace MVCCore.Mediator.Handler
 {
-    public class LoginHandler : IRequestHandler<LoginRequest, int>
+    public class LoginHandler : IRequestHandler<LoginRequest, bool>
     {
         private readonly ILogin _login;
         public LoginHandler(ILogin login)
@@ -17,10 +17,9 @@ namespace MVCCore.Mediator.Handler
             _login = login;
         }
 
-        public async Task<int> Handle(LoginRequest request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(LoginRequest request, CancellationToken cancellationToken)
         {
-            var response = await _login.ValidateUser(request.UserName, request.Password);
-
+            var response = await _login.ValidateUserWithIdentity(request);
             return response;
         }
         

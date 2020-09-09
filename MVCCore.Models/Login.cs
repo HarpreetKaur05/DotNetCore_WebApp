@@ -11,13 +11,11 @@ namespace MVCCore.Models
         [Key]
         public Int32 UserId { get; set; }
       
-        [Display(Name = "User Name")]
-        [MaxLength(50)]
-        public string UserName { get; set; }
+        [Display(Name = "Email")]
+        public string Email { get; set; }
         
       
-        [Display(Name = "Password")]
-        [MaxLength(50)]
+        [Display(Name = "Password")]       
         public string Password { get; set; }
          
     }    

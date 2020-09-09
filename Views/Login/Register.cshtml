@@ -19,37 +19,37 @@
                 <div class="editor-label">
                     @Html.LabelFor(m => m.UserName)
                 </div>
-                <div class="editor-field custominputfield">
-                    @Html.TextBoxFor(m => m.UserName, new { placeholder = "Enter username" })
+                <div class="editor-field custominputfield" style="width: 430px !important;">
+                    @Html.TextBoxFor(m => m.UserName, new { placeholder = "enter username" })
                     @Html.ValidationMessageFor(m => m.UserName)
                 </div>
 
                 <div class="editor-label">
                     @Html.LabelFor(m => m.Email)
                 </div>
-                <div class="editor-field custominputfield">
-                    @Html.TextBoxFor(m => m.Email, new { placeholder = "Enter email to register" })
+                <div class="editor-field custominputfield" style="width: 430px !important;">
+                    @Html.TextBoxFor(m => m.Email, new { placeholder = "enter email" })
                     @Html.ValidationMessageFor(m => m.Email)
                 </div>
 
                 <div class="editor-label">
                     @Html.LabelFor(m => m.Password)
                 </div>
-                <div class="editor-field custominputfield">
-                    @Html.PasswordFor(m => m.Password, new { placeholder = "Enter password" })
+                <div class="editor-field custominputfield" style="width: 430px !important;">
+                    @Html.PasswordFor(m => m.Password, new { placeholder = "enter password" })
                     @Html.ValidationMessageFor(m => m.Password)
                 </div>
                 <div class="editor-label">
                     @Html.LabelFor(m => m.ConfirmPassword)
                 </div>
-                <div class="editor-field custominputfield">
+                <div class="editor-field custominputfield" style="width: 430px !important;">
                     @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "reenter password" })
                     @Html.ValidationMessageFor(m => m.ConfirmPassword)
                 </div>
 
 
                 <div class="divbutton">
-                    <input type="submit" value="Add" class="custombutton" />
+                    <input type="submit" value="Register" class="custombutton" />
                     <input type="submit" value="Back to Login" formaction=@Url.Action("Login") formmethod="post"  class="custombutton" />
                 </div>
 
@@ -60,7 +60,4 @@
     </div>
 }
 
-
-
-<h1>Register</h1>
-
+ 

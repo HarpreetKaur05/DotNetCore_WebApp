@@ -6,7 +6,7 @@ using System.Text;
 
 namespace MVCCore.Mediator.Request
 {
-    public class RegisterRequest : RegisterModel, IRequest<int>
+    public class RegisterRequest : RegisterModel, IRequest<bool>
     {
 
     }

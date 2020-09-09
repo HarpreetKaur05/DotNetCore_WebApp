@@ -1,6 +1,7 @@
 ﻿using System; 
 using System.Threading.Tasks;
-using MediatR; 
+using MediatR;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc; 
 using MVCCore.BL;
 using MVCCore.Mediator.Request;
@@ -10,11 +11,12 @@ namespace MVCCore.Controllers
 {
     public class LoginController : Controller
     {
-        private IMediator _mediator;   // Depency Injection to inject Imediator in asp.netcore
+        private IMediator _mediator;   // Dependency Injection to inject Imediator in asp.netcore
         private ILogin _login;
         private readonly ILogger _logger;
         private IRegister _register;
-        public LoginController(IMediator mediator , ILogin login, ILogger logger, IRegister register)
+
+        public LoginController(IMediator mediator , ILogin login, ILogger logger, IRegister register) 
         {
             _mediator = mediator;
             _login = login;
@@ -34,15 +36,16 @@ namespace MVCCore.Controllers
             if (this.ModelState.IsValid)
             {
                 try
-                {
+                {                     
                     var response = await _mediator.Send(login);
-                    if (response != 0)
+                    if (response  == true)
                         return RedirectToAction("Index", "Home");
                     else
-                        ViewBag.SuccessMessage = "Wrong Credentials, Please check username or password!";
-                        return View();
+                        ViewBag.SuccessMessage = "Wrong credentials or user does not exist";
+                    return View();
+                   
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     _logger.Error("error in login controller" + ex.Message);
                     return View("Error");
@@ -52,6 +55,7 @@ namespace MVCCore.Controllers
             {              
                 return View();
             }
+             
         }
 
         /******************************************************************
@@ -69,13 +73,14 @@ namespace MVCCore.Controllers
             {
                 try
                 {
-                      var response =  await _mediator.Send(register);
-                    if (response != 0)
+                    var response = await _mediator.Send(register);
+                    if (response == true)
                     {
                         return RedirectToAction("Login", "Login");
                     }
-                    else {
-                        ViewBag.SuccessMessage = "User Already exists, please login";                         
+                    else
+                    {
+                        ViewBag.SuccessMessage = "User Already exists, please login";
                     }
                 }
                 catch (Exception ex)
