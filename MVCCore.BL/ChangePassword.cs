@@ -29,7 +29,7 @@ namespace MVCCore.BL
             };
             var result = await _usermanager.ChangePasswordAsync(user, changePasswordModel.CurrentPassword , changePasswordModel.Password);             
             await _signinmanager.RefreshSignInAsync(user);
-             return result.Succeeded; 
+            return result.Succeeded; 
             
         }
     }
