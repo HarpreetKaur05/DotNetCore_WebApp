@@ -4,25 +4,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore.SqlServer;
-using Microsoft.EntityFrameworkCore;
-using System;
-using Lamar;
-using MVCCore.StructureMap;
-using MediatR;
-using System.Reflection;
-using MVCCore.BL;
-using MVCCore.Mediator.Request;
-using FluentValidation;
-using FluentValidation.AspNetCore;
-using MVCCore.Mediator.Handler.ValidatorHandler;
 using MVCCore.Models;
-using AppContext = MVCCore.Models.AppContext;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
-using System.Net;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.EntityFrameworkCore;
+using StructureMap;
+using MVCCore.StructureMap;
+using System;
 
 namespace MVCCore
 {
@@ -36,45 +22,40 @@ namespace MVCCore
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            var container = new Lamar.Container(x =>
-            { 
-                services.AddScoped<IMessagingService, StructureMappingService>();
+            
                 services.AddControllersWithViews();
-                services.AddMvc()               
-                        .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginValidatorHandler>())
-                        .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<RegisterValidationHandler>())
-                        .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ChangePasswordValidator>());   
-                services.AddDbContext<AppContext>(options =>
-                                options.UseSqlServer(Configuration.GetConnectionString("DevConnection"),b => b.MigrationsAssembly("MVCCore")));
-                
-                services.AddDistributedMemoryCache();  
-                services.AddSession();
+                services.AddMvc();
 
-                services.AddMediatR(typeof(Startup));
-                services.AddMediatR(Assembly.GetExecutingAssembly()); 
+                services.AddDbContext<DoctorContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DevConnection"))
+                );
 
-                services.AddIdentity<IdentityUser, IdentityRole>()
-                        .AddEntityFrameworkStores<AppContext>();
-                
-                services.Configure<PasswordHasherOptions>(options => options.CompatibilityMode = PasswordHasherCompatibilityMode.IdentityV3);
-                services.ConfigureApplicationCookie(options => options.LoginPath = "/login");
-            });                     
-        }
+            // Dependency Injection
+            // instance of doctor context whenever we needed we can use ,
+            //We need construtor parameter in controller class to no need create a instance 
 
-        public void ConfigureContainer(ServiceRegistry services)
-        {
-            services.Scan(s =>
+            // Structure Map Demo
+            var Container = new Container();
+            Container.Configure(config =>
             {
-                s.TheCallingAssembly();
-                s.WithDefaultConventions();
-                s.AssembliesAndExecutablesFromApplicationBaseDirectory(assembly => assembly.GetName().Name.StartsWith("MVCCore"));
-                s.ConnectImplementationsToTypesClosing(typeof(IRequestHandler<,>));    
+                // config.AddRegistry(new StructureMappingRegistry());
+                // config.Populate(services);
 
+                config.Scan(s =>
+                {
+                    s.TheCallingAssembly();
+                    s.WithDefaultConventions();
+                    s.LookForRegistries();
+                    s.AssembliesAndExecutablesFromApplicationBaseDirectory();
+                });
+                config.Populate(services);
             });
+            return Container.GetInstance<IServiceProvider>();
+         }
 
-        }
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -88,16 +69,15 @@ namespace MVCCore
             }
             app.UseStaticFiles();
 
-            app.UseSession();
             app.UseRouting();
+
             app.UseAuthorization();
-            app.UseAuthentication();  
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Login}/{action=Login}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
