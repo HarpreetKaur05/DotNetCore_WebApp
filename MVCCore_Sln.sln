@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVCCore.BL", "MVCCore.BL\MV
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVCCore.Mediator.Handler", "MVCCore.Mediator.Handler\MVCCore.Mediator.Handler.csproj", "{5B7896EC-5A16-4175-854D-1AB5F1A57CC0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVCCore.Mediator.Request", "MVCCore.Mediator.Request\MVCCore.Mediator.Request.csproj", "{BA5EB463-DB4B-4EC5-A1EE-CC6BA245B8B8}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVCCore.Models", "MVCCore.Models\MVCCore.Models.csproj", "{0B0F9C0D-9569-49AD-8E71-E4B49E811A5E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnitTestProject", "XUnitTestProject\XUnitTestProject.csproj", "{96EFA7AE-DDBB-4394-8FAA-AF6AA5BC2B09}"
@@ -29,10 +27,6 @@ Global
 		{5B7896EC-5A16-4175-854D-1AB5F1A57CC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B7896EC-5A16-4175-854D-1AB5F1A57CC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B7896EC-5A16-4175-854D-1AB5F1A57CC0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BA5EB463-DB4B-4EC5-A1EE-CC6BA245B8B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BA5EB463-DB4B-4EC5-A1EE-CC6BA245B8B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BA5EB463-DB4B-4EC5-A1EE-CC6BA245B8B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BA5EB463-DB4B-4EC5-A1EE-CC6BA245B8B8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0B0F9C0D-9569-49AD-8E71-E4B49E811A5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0B0F9C0D-9569-49AD-8E71-E4B49E811A5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B0F9C0D-9569-49AD-8E71-E4B49E811A5E}.Release|Any CPU.ActiveCfg = Release|Any CPU

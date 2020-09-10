@@ -1,0 +1,37 @@
+﻿@model MVCCore.Models.CreateRoleModel
+@{
+    ViewData["Title"] = "Create Role";
+}
+
+@using (Html.BeginForm())
+{
+
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
+
+                <span class="login100-form-title p-b-33">
+                    Create Role
+                </span>
+
+                <div class="editor-label">
+                    @Html.LabelFor(m => m.RoleName)
+                </div>
+                <div class="editor-field custominputfield" style="width: 430px !important;">
+                    @Html.TextBoxFor(m => m.RoleName, new { placeholder = "enter role name" })
+                    @Html.ValidationMessageFor(m => m.RoleName)
+                </div>
+                <div class="divbutton">
+                    <input type="submit" value="Create Role" class="custombutton" />
+                    <input type="submit" value="Back to Login" asp-controller="Login" asp-action="Login" formmethod="post" class="custombutton" />
+
+                </div>
+
+                @ViewBag.SuccessMessage
+            </div>
+        </div>
+
+    </div>
+}
+
+

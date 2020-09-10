@@ -55,10 +55,8 @@ namespace MVCCore.BL
                 UserName = register.UserName,
                 Email = register.Email
             };
-
             var result = await _usermanager.CreateAsync(user, register.Password);
-            if (result.Succeeded)
-            {
+            if (result.Succeeded){
                 await _signinmanager.SignInAsync(user, isPersistent: false);
             }
             return result.Succeeded;
