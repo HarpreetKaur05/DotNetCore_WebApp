@@ -12,8 +12,9 @@ namespace MVCCore.Mediator.Handler.ValidatorHandler
         public LoginValidatorHandler()
         {
 
-            RuleFor(x => x.UserName)
-                .NotEmpty();
+            RuleFor(x => x.Email)
+                .NotEmpty().EmailAddress();
+            
 
             RuleFor(x => x.Password)
                 .NotEmpty();                 

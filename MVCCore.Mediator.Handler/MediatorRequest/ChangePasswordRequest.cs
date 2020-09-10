@@ -6,8 +6,9 @@ using System.Text;
 
 namespace MVCCore.Mediator.Request
 {
-    public class RegisterRequest : RegisterModel, IRequest<bool>
+  public  class ChangePasswordRequest : ChangePasswordModel , IRequest<bool>
     {
 
     }
 }
+ 
