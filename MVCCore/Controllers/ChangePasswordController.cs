@@ -7,16 +7,14 @@ using MVCCore.BL;
 using MVCCore.Mediator.Request;
 using Serilog;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-
+using Microsoft.AspNetCore.Http; 
 namespace MVCCore.Controllers
 {
      public class ChangePasswordController : Controller
     {
         private readonly IMediator _mediator;   // Dependency Injection to inject Imediator in asp.netcore
         private readonly ILogger _logger;
-         
-
+     
         public ChangePasswordController(IMediator mediator, ILogger logger)
         {
             _mediator = mediator;

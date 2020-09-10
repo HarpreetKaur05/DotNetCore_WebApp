@@ -1,6 +1,7 @@
 ﻿using System; 
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc; 
 using MVCCore.BL;
@@ -36,7 +37,8 @@ namespace MVCCore.Controllers
             if (this.ModelState.IsValid)
             {
                 try
-                {                     
+                {
+                    HttpContext.Session.SetString("userEmail", login.Email);
                     var response = await _mediator.Send(login);
                     if (response  == true)
                         return RedirectToAction("ListOfCustomer", "Home");
