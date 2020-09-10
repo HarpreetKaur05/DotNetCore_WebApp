@@ -47,8 +47,11 @@ namespace MVCCore
                         .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<RegisterValidationHandler>())
                         .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ChangePasswordValidator>());   
                 services.AddDbContext<AppContext>(options =>
-                                options.UseSqlServer(Configuration.GetConnectionString("DevConnection"),b => b.MigrationsAssembly("MVCCore")));                                
-                                  
+                                options.UseSqlServer(Configuration.GetConnectionString("DevConnection"),b => b.MigrationsAssembly("MVCCore")));
+                
+                services.AddDistributedMemoryCache();  
+                services.AddSession();
+
                 services.AddMediatR(typeof(Startup));
                 services.AddMediatR(Assembly.GetExecutingAssembly()); 
 
@@ -68,6 +71,7 @@ namespace MVCCore
                 s.WithDefaultConventions();
                 s.AssembliesAndExecutablesFromApplicationBaseDirectory(assembly => assembly.GetName().Name.StartsWith("MVCCore"));
                 s.ConnectImplementationsToTypesClosing(typeof(IRequestHandler<,>));    
+
             });
 
         }
@@ -84,8 +88,8 @@ namespace MVCCore
             }
             app.UseStaticFiles();
 
+            app.UseSession();
             app.UseRouting();
-
             app.UseAuthorization();
             app.UseAuthentication();  
 
