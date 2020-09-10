@@ -28,12 +28,6 @@ namespace MVCCore.Models
         [Compare("Password", ErrorMessage = "Passwords do not match.")]
         public string ConfirmPassword { get; set; }
 
-        public Int32 CreatedBy { get; set; }
-        public DateTime CreateDate { get; set; }
-        public bool IsActive { get; set; }
-
-        public Int32? ModifiedBy = null;
-
-        public DateTime? ModifiedDate = null;
+        
     }
 }

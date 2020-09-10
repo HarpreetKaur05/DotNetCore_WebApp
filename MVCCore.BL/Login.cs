@@ -15,7 +15,6 @@ namespace MVCCore.BL
     {
         private readonly AppContext _dbContext; 
         private readonly SignInManager<IdentityUser> _signinmanager;
-
         private readonly UserManager<IdentityUser> _userManager;
         public Login(AppContext context ,SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager)
         {
