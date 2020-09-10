@@ -54,12 +54,17 @@ namespace MVCCore.BL
             {
                 UserName = register.UserName,
                 Email = register.Email
+               
             };
             var result = await _usermanager.CreateAsync(user, register.Password);
             if (result.Succeeded){
                 await _signinmanager.SignInAsync(user, isPersistent: false);
             }
-            return result.Succeeded;
+
+           var user1 =   await _usermanager.FindByEmailAsync(register.Email);
+         
+            var res = await _usermanager.AddToRoleAsync(user1, "User");
+          return result.Succeeded;
         }
     }
 }
