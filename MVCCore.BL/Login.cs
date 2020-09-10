@@ -24,12 +24,7 @@ namespace MVCCore.BL
             _userManager = userManager;
         }
 
-        //public async Task<int> ValidateUser(string username, string password)
-        //{
-        //    var response = await _dbContext.Login.Where(x => x.Email == username && x.Password == password).Select(x => x.UserId).FirstOrDefaultAsync();
-        //    return response;
-        //}
-
+      
         public async Task<bool> ValidateUserWithIdentity(MVCCore.Models.Login login)
         {
             IdentityUser user = await _userManager.FindByEmailAsync(login.Email);
@@ -39,7 +34,8 @@ namespace MVCCore.BL
                 return result.Succeeded;
             }
             return false;
-        }
-    }    
+        }      
+
+    }
 
 }

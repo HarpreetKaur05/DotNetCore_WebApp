@@ -1,40 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+using System.Threading.Tasks;
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using MVCCore.Models;
-using MVCCore.StructureMap;
+using MVCCore.BL;
+using MVCCore.Mediator.Request;
+using Serilog;
 
 namespace MVCCore.Controllers
 {
     public class HomeController : Controller
     {
-       private readonly  ILogger<HomeController> _logger;
-       private  IMessagingService _messageService;
+
+        private readonly IMediator _mediator;
+        private readonly  ILogger _logger; 
+
+        public HomeController(IMediator mediator ,ILogger logger)
+        {
+            _logger = logger; 
+            _mediator = mediator;
+        }
          
-        public HomeController(ILogger<HomeController> logger, IMessagingService messagingService)
-        {
-            _logger = logger;
-            _messageService = messagingService;
-        }
-
-        public IActionResult Index()
-        {
-            ViewBag.Message = _messageService.GetMessage();
+        public IActionResult ListOfCustomer()
+        { 
             return View();
         }
 
-          public IActionResult Privacy()
+        [Authorize]
+        public IActionResult CreateCustomer()
         {
             return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

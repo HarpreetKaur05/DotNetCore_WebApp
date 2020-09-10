@@ -32,10 +32,12 @@
                     @Html.ValidationMessageFor(m => m.Password)
                 </div>
                 
-                <div class="divbutton">                    
-                    <input type="submit" value="Log In" class="custombutton"  />     
+                <div class="divbutton">
+                    <input type="submit" value="Log In" class="custombutton" />
                     <input type="submit" value="New User" formaction=@Url.Action("Register") formmethod="post" class="custombutton" />
-                     
+                    <div>
+                        <a asp-action="forgotpassword">forgot password?</a>
+                    </div>
                 </div>
                 <div>
                     

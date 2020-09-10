@@ -22,14 +22,5 @@ namespace MVCCore.Mediator.Handler
             var response = await _register.CreateUserWithIdentity(request);
             return response;
         }
-
-        //public async Task<int> Handle(RegisterRequest request, CancellationToken cancellationToken)
-        // {
-        //     var response = await _register.SaveNewUser(request);
-        //     return response;
-
-        // }
-
-
     }
 }

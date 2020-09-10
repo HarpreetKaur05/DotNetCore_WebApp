@@ -20,6 +20,9 @@ using AppContext = MVCCore.Models.AppContext;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using System.Net;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace MVCCore
 {
@@ -40,20 +43,23 @@ namespace MVCCore
                 services.AddScoped<IMessagingService, StructureMappingService>();
                 services.AddControllersWithViews();
                 services.AddMvc()
+               
                         .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginValidatorHandler>())
-                        .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<RegisterValidationHandler>());
+                        .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<RegisterValidationHandler>())
+                        .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ChangePasswordValidator>()) ;
+                
 
                 services.AddDbContext<AppContext>(options =>
                                 options.UseSqlServer(Configuration.GetConnectionString("DevConnection"),b => b.MigrationsAssembly("MVCCore")));                                
                                   
                 services.AddMediatR(typeof(Startup));
-                services.AddMediatR(Assembly.GetExecutingAssembly());
+                services.AddMediatR(Assembly.GetExecutingAssembly()); 
 
                 services.AddIdentity<IdentityUser, IdentityRole>()
                         .AddEntityFrameworkStores<AppContext>();
                 
                 services.Configure<PasswordHasherOptions>(options => options.CompatibilityMode = PasswordHasherCompatibilityMode.IdentityV3);
-
+                services.ConfigureApplicationCookie(options => options.LoginPath = "/login");
             });                     
         }
 
